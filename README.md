@@ -67,4 +67,4 @@
 ---
 
 ### 2. UseCase-диаграмма 
-![UseCase-диаграмма](Desktop/images/usecase.jpg)
+![UseCase-диаграмма](usecase.jpg)
