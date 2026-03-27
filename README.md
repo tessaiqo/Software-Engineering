@@ -80,40 +80,7 @@
 | N-04  | Масштабируемость       | Горизонтальное масштабирование (БД, статика)                       | Средний  | 64   |
 
 ### 4. UseCase-диаграмма 
-```plantuml
-@startuml
-left to right direction
-
-actor "Посетитель" as Visitor
-actor "Администратор" as Admin
-
-rectangle "Веб-сайт prufy.ru" {
-    usecase "Просмотр новостей" as UC_ViewNews
-    usecase "Поиск" as UC_Search
-    usecase "Переход в Telegram" as UC_Telegram
-    usecase "Аутентификация администратора" as UC_AdminAuth
-    usecase "Управление контентом" as UC_ManageContent
-    usecase "Управление рекламой" as UC_ManageAds
-    usecase "Просмотр статистики" as UC_ViewStats
-}
-
-' Ассоциации акторов с прецедентами
-Visitor --> UC_ViewNews
-Visitor --> UC_Search
-Visitor --> UC_Telegram
-
-Admin --> UC_AdminAuth
-Admin --> UC_ManageContent
-Admin --> UC_ManageAds
-Admin --> UC_ViewStats
-
-' Отношения включения (include) – управление контентом, рекламой, статистикой требуют аутентификации
-UC_ManageContent ..> UC_AdminAuth : <<include>>
-UC_ManageAds ..> UC_AdminAuth : <<include>>
-UC_ViewStats ..> UC_AdminAuth : <<include>>
-
-@enduml
-```
+![UseCase-диаграмма](usecase.png)
 
 
 **Акторы:**
