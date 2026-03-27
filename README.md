@@ -80,7 +80,40 @@
 | N-04  | Масштабируемость       | Горизонтальное масштабирование (БД, статика)                       | Средний  | 64   |
 
 ### 4. UseCase-диаграмма 
-![UseCase-диаграмма prufy.ru](//www.plantuml.com/plantuml/png/ZPBDQjj058NtynGNRzf2x0SemSHatMxIPbi6QU88PBb88q8f1LlkJnUb3Us-MVG556E1VsBr5UwyGf-aPwQMYDI4s22mhiuzSyztvoZHCjRfA1IXEjEannG7mtDDVX0hJmVZI0ZfwN5C7RxYqaovC1alyHIyCLyw91Cw3P80YbftoGk-uILlePkQp4muXxuq4wSU-AC0fjPTHiDGeU4xpAwxyCvvPJ9w7QTdRtfnsg6tWl1B4-N9n0glu8KPu5vQNy8H9SzjoGsqSWUyF7vr6gYBv-eYQRT3ZP5uNUbEb8ozyxOA4ITuFa2z89xJ2nMgOIn7LLVrtkgxD3CtnTO1UWy0QmJ_YF_VYFFxc71UsJemWrItv_d5lwqCEJVM7IO5mRhaRNrSoJULopCPoQ4w7aTQHNeF9niLRXkKGPLNJP-1dpom0fl6PN6vNEZbxJMSQAaJyKw8HmH2KtIMbia_ChoqPDOx4bWbxCWDMU1pmOjTljoo4xjxHjrklx7aHhrQQhjQBqqupbMvXjuejoYsFbLWwd8pgqtw4qDl4Ugpu-nkmDnIDb_DfxhqE8YyCFNL4_ep-K5cjjUU3_xRsC5TEq2TJEQarsQ6OpEGlk-2WcqxC_LwJJxqb0uFTmFt--8sY3sq5Pq7jU98HNuw2ly2)
+```plantuml
+@startuml
+left to right direction
+
+actor "Посетитель" as Visitor
+actor "Администратор" as Admin
+
+rectangle "Веб-сайт prufy.ru" {
+    usecase "Просмотр новостей" as UC_ViewNews
+    usecase "Поиск" as UC_Search
+    usecase "Переход в Telegram" as UC_Telegram
+    usecase "Аутентификация администратора" as UC_AdminAuth
+    usecase "Управление контентом" as UC_ManageContent
+    usecase "Управление рекламой" as UC_ManageAds
+    usecase "Просмотр статистики" as UC_ViewStats
+}
+
+' Ассоциации акторов с прецедентами
+Visitor --> UC_ViewNews
+Visitor --> UC_Search
+Visitor --> UC_Telegram
+
+Admin --> UC_AdminAuth
+Admin --> UC_ManageContent
+Admin --> UC_ManageAds
+Admin --> UC_ViewStats
+
+' Отношения включения (include) – управление контентом, рекламой, статистикой требуют аутентификации
+UC_ManageContent ..> UC_AdminAuth : <<include>>
+UC_ManageAds ..> UC_AdminAuth : <<include>>
+UC_ViewStats ..> UC_AdminAuth : <<include>>
+
+@enduml
+```
 
 
 **Акторы:**
